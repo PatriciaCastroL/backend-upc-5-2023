@@ -18,7 +18,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "SELECT * FROM PRODUCTO WHERE ESTADO_REGISTRO = 1";
+            const string sql = "Exec SelectProducto";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -31,7 +31,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static Producto GetById(int id)
         {
-            const string sql = "SELECT * FROM PRODUCTO WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+            const string sql = "Exec SelectProductoById @id";
 
             var parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int64);
@@ -56,7 +56,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(Producto producto)
         {
-            const string sql = "INSERT INTO [PRODUCTO]([NOMBRE], [ID_CATEGORIA]) VALUES (@Nombre, @IdCategoria) ";
+            const string sql = "Exec InsertProducto @Nombre, @IdCategoria";
             var parameters = new DynamicParameters();
             parameters.Add("Nombre", producto.Nombre, DbType.String);
             parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
@@ -74,13 +74,14 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Update(Producto producto)
         {
-            const string sql = "UPDATE [PRODUCTO] SET NOMBRE = @Nombre, ID_CATEGORIA = @IdCategoria WHERE ID = @Id";
+            const string sql = "Exec UpdateProducto @Nombre, @IdCategoria @Id";
 
             var parameters = new DynamicParameters();
             parameters.Add("Id", producto.Id, DbType.Int64);
             parameters.Add("Nombre", producto.Nombre, DbType.String);
             parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
 
+        /// <param name="id">The identifier.</param>
             var result = DBManager.Instance.SetData(sql, parameters);
 
             return result;
@@ -89,12 +90,11 @@ namespace backend_upc_5_2023.Servicios
         /// <summary>
         /// Deletes the specified identifier.
         /// </summary>
-        /// <param name="id">The identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Delete(int id)
         {
-            const string sql = "UPDATE [PRODUCTO] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
+            const string sql = "Exec DeleteProducto @Id";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);

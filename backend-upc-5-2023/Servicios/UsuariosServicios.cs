@@ -20,7 +20,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "SELECT * FROM USUARIOS WHERE ESTADO_REGISTRO = 1";
+            const string sql = "Exec SelectUsuarios";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -33,7 +33,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static T GetById<T>(int id)
         {
-            const string sql = "SELECT * FROM USUARIOS WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+            const string sql = "Exec SelectUsuariosById @id";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -51,7 +51,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(Usuarios usuarios)
         {
-            const string sql = "INSERT INTO USUARIOS([USER_NAME], [NOMBRE_COMPLETO], [PASSWORD]) VALUES (@UserName, @NombreCompleto, @Password) ";
+            const string sql = "Exec InsertUsuarios @UserName, @NombreCompleto, @Password";
 
             var parameters = new DynamicParameters();
             parameters.Add("UserName", usuarios.UserName, DbType.String);

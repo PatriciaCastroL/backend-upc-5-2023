@@ -32,7 +32,7 @@ namespace PruebaUnitarias
         {
             Usuarios usuarios = new();
             usuarios.NombreCompleto = "NombreCompleto UnitTest";
-            usuarios.UserName = "UserName UnitTest";
+            usuarios.UserName = "User UnitTest";
             usuarios.Password = "Password UnitTest";
 
             var result = UsuariosServicios.Insert(usuarios);

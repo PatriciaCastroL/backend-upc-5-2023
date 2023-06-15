@@ -20,7 +20,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "SELECT * FROM H_PRODUCTO WHERE ESTADO_REGISTRO = 1";
+            const string sql = "Exec SelectH_Producto";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -33,7 +33,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static HProducto GetById(int id)
         {
-            const string sql = "SELECT * FROM H_PRODUCTO WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+            const string sql = "Exec SelectUsuariosById @id";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -76,7 +76,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(HProducto hProducto)
         {
-            const string sql = "INSERT INTO H_PRODUCTO([CANTIDAD], [ID_PRODUCTO], [ID_CARRITO_COMPRA]) VALUES (@Cantidad, @IdProducto, @IdCarritoCompra) ";
+            const string sql = "Exec InsertH_Producto @Cantidad, @IdProducto, @IdCarritoCompra";
 
             var parameters = new DynamicParameters();
             parameters.Add("Cantidad", hProducto.Cantidad, DbType.Int64);
