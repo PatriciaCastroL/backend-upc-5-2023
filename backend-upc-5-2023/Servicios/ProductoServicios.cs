@@ -18,7 +18,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "Exec SelectProducto";
+            const string sql = "SP_OBTENER_PRODUCTO";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -31,7 +31,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static Producto GetById(int id)
         {
-            const string sql = "Exec SelectProductoById @id";
+            const string sql = "SP_OBTENER_PRODUCTO_ID";
 
             var parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int64);
@@ -56,7 +56,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(Producto producto)
         {
-            const string sql = "Exec InsertProducto @Nombre, @IdCategoria";
+            const string sql = "SP_INSERTAR_PRODUCTO";
             var parameters = new DynamicParameters();
             parameters.Add("Nombre", producto.Nombre, DbType.String);
             parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
@@ -74,7 +74,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Update(Producto producto)
         {
-            const string sql = "Exec UpdateProducto @Nombre, @IdCategoria @Id";
+            const string sql = "SP_ACTUALIZAR_PRODUCTO";
 
             var parameters = new DynamicParameters();
             parameters.Add("Id", producto.Id, DbType.Int64);
@@ -94,7 +94,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Delete(int id)
         {
-            const string sql = "Exec DeleteProducto @Id";
+            const string sql = "SP_ELIMINAR_PRODUCTO ";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);

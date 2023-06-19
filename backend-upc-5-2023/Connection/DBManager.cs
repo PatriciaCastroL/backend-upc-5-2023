@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace backend_upc_5_2023.Connection
@@ -58,7 +59,7 @@ namespace backend_upc_5_2023.Connection
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             DefaultTypeMap.MatchNamesWithUnderscores = true;
-            return connection.Query<T>(sql);
+            return connection.Query<T>(sql, commandType:CommandType.StoredProcedure) ;
         }
 
         public IEnumerable<T> GetDataConParametros<T>(string sql, DynamicParameters dynamicParameters)
@@ -66,7 +67,7 @@ namespace backend_upc_5_2023.Connection
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             DefaultTypeMap.MatchNamesWithUnderscores = true;
-            return connection.Query<T>(sql, dynamicParameters);
+            return connection.Query<T>(sql, dynamicParameters, commandType: CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace backend_upc_5_2023.Connection
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             DefaultTypeMap.MatchNamesWithUnderscores = true;//SnakeCase to CamelCase
-            return connection.Execute(sql, dynamicParameters);
+            return connection.Execute(sql, dynamicParameters,commandType: CommandType.StoredProcedure);
         }
 
         #endregion Methods

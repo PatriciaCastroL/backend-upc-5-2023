@@ -20,7 +20,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "Exec SelectCategoria";
+            const string sql = "SP_OBTENER_CATEGORIA";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -33,7 +33,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static T GetById<T>(int id)
         {
-            const string sql = "Exec SelectCategoriaById @id";
+            const string sql = "SP_OBTENER_CATEGORIA_ID";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -51,13 +51,10 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(Categoria categoria)
         {
-            const string sql = "Exec InsertCategoria @Nombre";
-
+            const string sql_consulta = "SP_INSERTAR_CATEGORIA";
             var parameters = new DynamicParameters();
             parameters.Add("Nombre", categoria.Nombre, DbType.String);
-
-            var result = DBManager.Instance.SetData(sql, parameters);
-
+            var result = DBManager.Instance.SetData(sql_consulta, parameters);
             return result;
         }
 
@@ -69,7 +66,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Update(Categoria categoria)
         {
-            const string sql = " UpdateCategoria @Id, @Nombre";
+            const string sql = "SP_ACTUALIZAR_CATEGORIA";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", categoria.Id, DbType.Int64);
@@ -88,7 +85,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Delete(int id)
         {
-            const string sql = "Exec DeleteCategoria @Id";
+            const string sql = "SP_ELIMINAR_CATEGORIA";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);

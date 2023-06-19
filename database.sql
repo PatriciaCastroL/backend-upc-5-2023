@@ -1,10 +1,10 @@
 
-
+create database upc_database
 
 
 /*
 
-create database upd_database
+create database upc_database
 
 use upd_database
 

@@ -5,36 +5,38 @@ using System.Data;
 
 namespace PruebaUnitarias
 {
-    public class UnitTestProducto
+    public class UnitTestHProducto
     {
-        public UnitTestProducto()
+        public UnitTestHProducto()
         {
             //utilizar otra BD (temporal)
             DBManager.Instance.ConnectionString = "workstation id=upc-database.mssql.somee.com;packet size=4096;user id=escalante_77_SQLLogin_4;pwd=l6yh7t1jfv;data source=upc-database.mssql.somee.com;persist security info=False;initial catalog=upc-database";
         }
 
         [Fact]
-        public void Producto_1_Get_VerificarNotNull()
+        public void HProducto_1_Get_VerificarNotNull()
         {
-            var result = ProductoServicios.Get<Producto>();//un listado
+            var result = HProductoServicios.Get<HProducto>();//un listado
             Assert.NotNull(result);
         }
 
         [Fact]
-        public void Producto_2_GetById_RegresaItem()
+        public void HProducto_2_GetById_RegresaItem()
         {
-            var result = ProductoServicios.GetById(1);
+            var result = HProductoServicios.GetById(1);
             Assert.Equal(1, result.Id);
         }
 
         [Fact]
-        public void Productos_3_Insertar_RetornaUno()
+        public void HProductos_3_Insertar_RetornaUno()
         {
-            Producto productos = new();
-            productos.Nombre = "Nombre UnitTest";
-            productos.IdCategoria = 1;
+            HProducto hproductos = new();
+            hproductos.Cantidad = "Cantidad UnitTest";
+            hproductos.IdProducto = "IdProducto UnitTest";
+            hproductos.IdCarritoCompra = "IdCarritoCompra UnitTest"
+            hproductos.Id = "Id UnitTest";
 
-            var result = ProductoServicios.Insert(productos);
+            var result = HProductoServicios.Insert(hproductos);
 
             Assert.Equal(1, result);
         }

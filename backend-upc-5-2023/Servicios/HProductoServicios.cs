@@ -20,7 +20,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "Exec SelectH_Producto";
+            const string sql = "SP_OBTENER_HPRODUCTO";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -33,7 +33,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static HProducto GetById(int id)
         {
-            const string sql = "Exec SelectUsuariosById @id";
+            const string sql = "SP_OBTENER_HPRODUCTO_ID";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -58,7 +58,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static IEnumerable<HProducto> GetByIdCarritoCompra(int idCarritoCompra)
         {
-            const string sql = "SELECT * FROM H_PRODUCTO WHERE ID_CARRITO_COMPRA = @idCarritoCompra AND ESTADO_REGISTRO = 1";
+            const string sql = "SP_OBTENER_HPRODUCTO_CARRITOCOMPRA";
 
             var parameters = new DynamicParameters();
             parameters.Add("idCarritoCompra", idCarritoCompra, DbType.Int64);
@@ -76,7 +76,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(HProducto hProducto)
         {
-            const string sql = "Exec InsertH_Producto @Cantidad, @IdProducto, @IdCarritoCompra";
+            const string sql = "SP_INSERTAR_HPRODUCTO";
 
             var parameters = new DynamicParameters();
             parameters.Add("Cantidad", hProducto.Cantidad, DbType.Int64);

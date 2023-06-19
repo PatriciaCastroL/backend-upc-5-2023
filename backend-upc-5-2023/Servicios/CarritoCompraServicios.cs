@@ -20,7 +20,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "Exec SelectCarritoCompra";
+            const string sql = "SP_OBTENER_CARRITOCOMPRA";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -33,7 +33,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static CarritoCompra GetById(int id)
         {
-            const string sql = "Exec SelectCarritoCompraById @id";
+            const string sql = "SP_OBTENER_CARRITOCOMPRA_ID";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -89,7 +89,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(CarritoCompra carritoCompra)
         {
-            const string sql = "Exec InsertCarritoCompra @Fecha, @IdUsuario";
+            const string sql = "SP_INSERTAR_CARRITOCOMPRA";
             var parameters = new DynamicParameters();
             parameters.Add("Fecha", DateTime.Now, DbType.DateTime);
             parameters.Add("IdUsuario", carritoCompra.IdUsuario, DbType.Int64);

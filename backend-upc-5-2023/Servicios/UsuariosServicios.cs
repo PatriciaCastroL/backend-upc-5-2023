@@ -20,7 +20,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "Exec SelectUsuarios";
+            const string sql = "SP_OBTENER_USUARIOS";
 
             return DBManager.Instance.GetData<T>(sql);
         }
@@ -33,7 +33,7 @@ namespace backend_upc_5_2023.Servicios
         /// <returns></returns>
         public static T GetById<T>(int id)
         {
-            const string sql = "Exec SelectUsuariosById @id";
+            const string sql = "SP_OBTENER_USUARIOS_ID";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -51,12 +51,12 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(Usuarios usuarios)
         {
-            const string sql = "Exec InsertUsuarios @UserName, @NombreCompleto, @Password";
+            const string sql = "SP_INSERTAR_USUARIOS";
 
             var parameters = new DynamicParameters();
-            parameters.Add("UserName", usuarios.UserName, DbType.String);
-            parameters.Add("NombreCompleto", usuarios.NombreCompleto, DbType.String);
-            parameters.Add("Password", usuarios.Password, DbType.String);
+            parameters.Add("@USER_NAME", usuarios.UserName, DbType.String);
+            parameters.Add("@NOMBRE_COMPLETO", usuarios.NombreCompleto, DbType.String);
+            parameters.Add("@PASSWORD", usuarios.Password, DbType.String);
 
             var result = DBManager.Instance.SetData(sql, parameters);
 
