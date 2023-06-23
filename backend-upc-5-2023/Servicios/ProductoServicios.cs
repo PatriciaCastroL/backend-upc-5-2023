@@ -41,7 +41,7 @@ namespace backend_upc_5_2023.Servicios
             const string sql = "SP_OBTENER_PRODUCTO_ID";
 
             var parameters = new DynamicParameters();
-            parameters.Add("Id", id, DbType.Int64);
+            parameters.Add("@Id", id, DbType.Int64);
 
             var result = DBManager.Instance.GetDataConParametros<Producto>(sql, parameters);
 
@@ -65,8 +65,8 @@ namespace backend_upc_5_2023.Servicios
         {
             const string sql = "SP_INSERTAR_PRODUCTO";
             var parameters = new DynamicParameters();
-            parameters.Add("Nombre", producto.Nombre, DbType.String);
-            parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
+            parameters.Add("@NOMBRE", producto.Nombre, DbType.String);
+            parameters.Add("@ID_CATEGORIA", producto.IdCategoria, DbType.Int64);
 
             var result = DBManager.Instance.SetData(sql, parameters);
 
@@ -84,9 +84,9 @@ namespace backend_upc_5_2023.Servicios
             const string sql = "SP_ACTUALIZAR_PRODUCTO";
 
             var parameters = new DynamicParameters();
-            parameters.Add("Id", producto.Id, DbType.Int64);
-            parameters.Add("Nombre", producto.Nombre, DbType.String);
-            parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
+            parameters.Add("@Id", producto.Id, DbType.Int64);
+            parameters.Add("@NOMBRE", producto.Nombre, DbType.String);
+            parameters.Add("@ID_CATEGORIA", producto.IdCategoria, DbType.Int64);
 
         /// <param name="id">The identifier.</param>
             var result = DBManager.Instance.SetData(sql, parameters);
@@ -104,7 +104,7 @@ namespace backend_upc_5_2023.Servicios
             const string sql = "SP_ELIMINAR_PRODUCTO ";
 
             var parameters = new DynamicParameters();
-            parameters.Add("ID", id, DbType.Int64);
+            parameters.Add("@Id", id, DbType.Int64);
 
             var result = DBManager.Instance.SetData(sql, parameters);
             return result;

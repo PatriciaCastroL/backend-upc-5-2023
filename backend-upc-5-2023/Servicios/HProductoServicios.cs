@@ -36,7 +36,7 @@ namespace backend_upc_5_2023.Servicios
             const string sql = "SP_OBTENER_HPRODUCTO_ID";
 
             var parameters = new DynamicParameters();
-            parameters.Add("ID", id, DbType.Int64);
+            parameters.Add("@Id", id, DbType.Int64);
 
             var result = DBManager.Instance.GetDataConParametros<HProducto>(sql, parameters);
 
@@ -61,7 +61,7 @@ namespace backend_upc_5_2023.Servicios
             const string sql = "SP_OBTENER_HPRODUCTO_CARRITOCOMPRA";
 
             var parameters = new DynamicParameters();
-            parameters.Add("idCarritoCompra", idCarritoCompra, DbType.Int64);
+            parameters.Add("@ID_CARRITO_COMPRA", idCarritoCompra, DbType.Int64);
 
             var result = DBManager.Instance.GetDataConParametros<HProducto>(sql, parameters);
 
@@ -79,9 +79,9 @@ namespace backend_upc_5_2023.Servicios
             const string sql = "SP_INSERTAR_HPRODUCTO";
 
             var parameters = new DynamicParameters();
-            parameters.Add("Cantidad", hProducto.Cantidad, DbType.Int64);
-            parameters.Add("IdProducto", hProducto.IdProducto, DbType.Int64);
-            parameters.Add("IdCarritoCompra", hProducto.IdCarritoCompra, DbType.Int64);
+            parameters.Add("@CANTIDAD", hProducto.Cantidad, DbType.Int64);
+            parameters.Add("@ID_PRODUCTO", hProducto.IdProducto, DbType.Int64);
+            parameters.Add("@ID_CARRITO_COMPRA", hProducto.IdCarritoCompra, DbType.Int64);
 
             var result = DBManager.Instance.SetData(sql, parameters);
 
