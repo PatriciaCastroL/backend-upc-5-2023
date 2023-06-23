@@ -91,7 +91,7 @@ namespace backend_upc_5_2023.Servicios
         {
             const string sql = "SP_INSERTAR_CARRITOCOMPRA";
             var parameters = new DynamicParameters();
-            parameters.Add("Fecha", DateTime.Now, DbType.DateTime);
+            //parameters.Add("Fecha", DateTime.Now, DbType.DateTime);
             parameters.Add("@ID_USUARIO", carritoCompra.IdUsuario, DbType.Int64);
 
             var result = DBManager.Instance.SetData(sql, parameters);
