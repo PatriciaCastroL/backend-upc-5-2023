@@ -22,6 +22,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 //}
 
+app.UseCors("DevelopmentCors");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
