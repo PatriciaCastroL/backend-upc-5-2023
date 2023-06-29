@@ -16,7 +16,7 @@ namespace PruebaUnitarias
         [Fact]
         public void Producto_1_Get_VerificarNotNull()
         {
-            var result = ProductoServicios.Get<Producto>();//un listado
+            var result = ProductoServicios.Get();//un listado
             Assert.NotNull(result);
         }
 

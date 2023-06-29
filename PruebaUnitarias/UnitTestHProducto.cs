@@ -33,7 +33,7 @@ namespace PruebaUnitarias
             HProducto hproductos = new();
             hproductos.Cantidad = "Cantidad UnitTest";
             hproductos.IdProducto = "IdProducto UnitTest";
-            hproductos.IdCarritoCompra = "IdCarritoCompra UnitTest"
+            hproductos.IdCarritoCompra = "IdCarritoCompra UnitTest";
             hproductos.Id = "Id UnitTest";
 
             var result = HProductoServicios.Insert(hproductos);
